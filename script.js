@@ -9,8 +9,32 @@ function Book(title, author, pageCount, status) {
     this.status = status;
 }
 
+// create new book obj --> create new book el based on book obj -->
+// add new book to library arr and dom list
+
+/*
+Create a new book
+Add it to the array as new Book object
+Empty book container node
+Loop through library array
+    Create a new book DOM element
+    Append it to the container
+*/
+
 function addBookToLibrary(book) {
-    bookContainer.appendChild(book);
+    myLibrary.push(book);
+}
+
+function createNewBook(title, author, pageCount, status) {
+    return new Book(title, author, pageCount, status);
+}
+
+function updateDOMBookList() {
+    bookContainer.innerHTML = '';
+
+    myLibrary.forEach(el => {
+        bookContainer.appendChild(createNewBookEl(el.title, el.author, el.pageCount, el.status));
+    });
 }
 
 function createNewBookEl(title, author, pageCount, status) {
@@ -61,5 +85,10 @@ function createNewBookEl(title, author, pageCount, status) {
     return newBook;
 }
 
-addBookToLibrary(createNewBookEl('Atomic Habits', 'James Clear', 320, true));
-
+addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
+updateDOMBookList();
+addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
+addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
+addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
+addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
+updateDOMBookList();

@@ -16,6 +16,12 @@ body {
     padding: 0.5rem;
     display: grid;
     grid-template-columns: 3fr 1fr;
+    border-bottom: 1px solid black;
+}
+
+.book:first-child {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .book-contents {
