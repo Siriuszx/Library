@@ -1,0 +1,48 @@
+* {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+
+}
+
+.book-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.book {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.book-contents {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.book-title {
+
+}
+
+.book-author {
+
+}
+
+.book-page-count {
+
+}
+
+.book-read-status {
+
+}
+
+.book-controls {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
