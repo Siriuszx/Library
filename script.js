@@ -18,6 +18,10 @@ function Book(title, author, pageCount, status) {
     this.status = status;
 }
 
+Book.prototype.toggleStatus = function() {
+    this.status = !this.status;
+};
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
@@ -53,6 +57,17 @@ function removeBook() {
     updateBookList();
 }
 
+function toggleStatus() {
+    let parentEl = this.parentNode.parentNode;
+    
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].title === parentEl.getAttribute('data-title')) {
+            myLibrary[i].toggleStatus();
+        }
+    }
+    updateBookList();
+}
+
 function createNewBookEl(title, author, pageCount, status) {
     const newBook = document.createElement('div');
     newBook.classList.add('book');
@@ -76,10 +91,17 @@ function createNewBookEl(title, author, pageCount, status) {
     const newBookStatus = document.createElement('div');
     newBookStatus.classList.add('book-read-status');
 
+    const newBookStatusTgl = document.createElement('input');
+    newBookStatusTgl.setAttribute('type','checkbox');
+    newBookStatusTgl.checked = status;
+    newBookStatusTgl.classList.add('book-status-toggle');
+    newBookStatusTgl.addEventListener('click', toggleStatus);
+
     newBookContents.appendChild(newBookTitle);
     newBookContents.appendChild(newBookAuthor);
     newBookContents.appendChild(newBookPageCount);
     newBookContents.appendChild(newBookStatus);
+    newBookContents.appendChild(newBookStatusTgl);
 
     const newBookControls = document.createElement('div');
     newBookControls.classList.add('book-controls');
