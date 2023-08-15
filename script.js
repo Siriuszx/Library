@@ -38,10 +38,18 @@ function updateBookList() {
     });
 }
 
+function clearFrom() {
+    formBookTitle.value = null;
+    formBookAuthor.value = null;
+    formBookPageCount.value = null;
+    formBookStatus.checked = false;
+}
+
 function submitNewBookHandler(e) {
     let bookStatus = formBookStatus.value === 'on' ? true : false;
     let newBook = createNewBook(formBookTitle.value,formBookAuthor.value,formBookPageCount.value,bookStatus);
     addBookToLibrary(newBook);
+    clearFrom();
     updateBookList();
 }
 
