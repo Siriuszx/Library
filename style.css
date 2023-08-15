@@ -3,9 +3,7 @@
     box-sizing: border-box;
 }
 
-body {
-
-}
+body {}
 
 .book-container {
     display: grid;
@@ -31,24 +29,35 @@ body {
     align-items: center;
 }
 
-.book-title {
+.book-title {}
 
-}
+.book-author {}
 
-.book-author {
+.book-page-count {}
 
-}
-
-.book-page-count {
-
-}
-
-.book-read-status {
-
-}
+.book-read-status {}
 
 .book-controls {
     display: grid;
     justify-content: center;
     align-items: center;
+}
+
+.add-book {
+    position: fixed;
+    bottom: 50%;
+    right: 0;
+}
+
+#open-modal {
+    color: white;
+    width: 160px;
+    height: 40px;
+    background-color: black;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+#open-modal:hover {
+    cursor: pointer;
 }
