@@ -37,6 +37,18 @@ function updateDOMBookList() {
     });
 }
 
+function removeBook() {
+    let parentEl = this.parentNode.parentNode;
+
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].title === parentEl.getAttribute('data-title')) {
+            myLibrary.splice(i, 1);
+            parentEl.remove();   
+        }
+    }
+    updateDOMBookList();
+}
+
 function createNewBookEl(title, author, pageCount, status) {
     const newBook = document.createElement('div');
     newBook.classList.add('book');
@@ -71,6 +83,7 @@ function createNewBookEl(title, author, pageCount, status) {
     const controlsRemoveBtn = document.createElement('button');
     controlsRemoveBtn.classList.add('remove-book');
     controlsRemoveBtn.textContent = 'Remove'
+    controlsRemoveBtn.addEventListener('click', removeBook);
 
     newBookControls.appendChild(controlsRemoveBtn);
 
@@ -85,10 +98,10 @@ function createNewBookEl(title, author, pageCount, status) {
     return newBook;
 }
 
-addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
+addBookToLibrary(createNewBook('Atmic Habits', 'James Clear', 320, true));
 updateDOMBookList();
-addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
-addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
-addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
+addBookToLibrary(createNewBook('Amic Habits', 'James Clear', 320, true));
+addBookToLibrary(createNewBook('Atomi Habits', 'James Clear', 320, true));
+addBookToLibrary(createNewBook('Atomic Habis', 'James Clear', 320, true));
 addBookToLibrary(createNewBook('Atomic Habits', 'James Clear', 320, true));
 updateDOMBookList();
