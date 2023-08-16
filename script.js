@@ -10,7 +10,6 @@ const formBookStatus = document.querySelector('#book-status');
 const submitBtn = document.querySelector('.submit-new-book');
 
 let myLibrary = [];
-// Last deleted uid?
 
 function Book(title, author, pageCount, status) {
     this.title = title;
@@ -23,8 +22,29 @@ Book.prototype.toggleStatus = function () {
     this.status = !this.status;
 };
 
-function addBookToLibrary(title, author, pageCount, status) {
+function selectBookNode(child) {
+    return {
+        bookEl: child.parentNode.parentNode,
+        bookElIndex: Array.from(document.querySelectorAll('.book')).indexOf(child.parentNode.parentNode),
+    };
+}
+
+function removeBook() {
+    let curBook = selectBookNode(this);
+
+    myLibrary.splice(curBook.bookElIndex, 1);
+    curBook.bookEl.remove();
+}
+
+function toggleRead() {
+    let curBook = selectBookNode(this);
+    
+    myLibrary[curBook.bookElIndex].toggleStatus();
+}
+
+function addBook(title, author, pageCount, status) {
     let newBook = new Book(title, author, pageCount, status);
+
     myLibrary.push(newBook);
     bookContainer.appendChild(createNewBookEl(newBook, myLibrary.length)); // UID TODO
 }
@@ -37,21 +57,10 @@ function clearFrom() {
 }
 
 function submitNewBookHandler(e) {
-    //TODO
     let bookStatus = formBookStatus.value === 'on' ? true : false;
-    let newBook = createNewBook(formBookTitle.value, formBookAuthor.value, formBookPageCount.value, bookStatus, myLibrary.length);
-    addBookToLibrary(newBook);
+
+    addBook(formBookTitle.value, formBookAuthor.value, formBookPageCount.value, bookStatus);
     clearFrom();
-}
-
-function removeBook() {
-    let bookEl = this.parentNode.parentNode;
-    myLibrary.splice(Number(bookEl.getAttribute('data-uid')), 1);
-    bookEl.remove();
-}
-
-function toggleStatus() {
-    //TODO
 }
 
 function createNewBookEl(book, uid) {
@@ -75,19 +84,19 @@ function createNewBookEl(book, uid) {
     const newBookPageCount = document.createElement('div');
     newBookPageCount.classList.add('book-page-count');
 
-    const newBookStatus = document.createElement('div');
-    newBookStatus.classList.add('book-read-status');
+    // const newBookStatus = document.createElement('div');
+    // newBookStatus.classList.add('book-read-status');
 
     const newBookStatusTgl = document.createElement('input');
     newBookStatusTgl.setAttribute('type', 'checkbox');
     newBookStatusTgl.checked = book.status;
     newBookStatusTgl.classList.add('book-status-toggle');
-    newBookStatusTgl.addEventListener('click', toggleStatus);
+    newBookStatusTgl.addEventListener('click', toggleRead);
 
     newBookContents.appendChild(newBookTitle);
     newBookContents.appendChild(newBookAuthor);
     newBookContents.appendChild(newBookPageCount);
-    newBookContents.appendChild(newBookStatus);
+    //newBookContents.appendChild(newBookStatus);
     newBookContents.appendChild(newBookStatusTgl);
 
     const newBookControls = document.createElement('div');
@@ -103,7 +112,7 @@ function createNewBookEl(book, uid) {
     newBookTitle.textContent = book.title;
     newBookAuthor.textContent = book.author;
     newBookPageCount.textContent = book.pageCount;
-    newBookStatus.textContent = book.status;
+    // newBookStatus.textContent = book.status;
 
     newBook.appendChild(newBookContents);
     newBook.appendChild(newBookControls);
@@ -117,9 +126,9 @@ openBookModal.addEventListener('click', () => {
 
 submitBtn.addEventListener('click', submitNewBookHandler);
 
-addBookToLibrary('Atmiwec Hdfabits', 'James Clear', 320, true);
-addBookToLibrary('Atmic Hafifts', 'James Clear', 320, true);
-addBookToLibrary('Atmfc Hbits', 'James Clear', 320, true);
-addBookToLibrary('Atsic abitfs', 'James Clear', 320, true);
-addBookToLibrary('Atqwemic Habits', 'James Clear', 320, true);
+addBook('Atmiwec Hdfabits', 'James Clear', 320, true);
+addBook('Atmic Hafifts', 'James Clear', 320, true);
+addBook('Atmfc Hbits', 'James Clear', 320, true);
+addBook('Atsic abitfs', 'James Clear', 320, true);
+addBook('Atqwemic Habits', 'James Clear', 320, true);
 
