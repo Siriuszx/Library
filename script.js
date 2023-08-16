@@ -46,7 +46,7 @@ function addBook(title, author, pageCount, status) {
     let newBook = new Book(title, author, pageCount, status);
 
     myLibrary.push(newBook);
-    bookContainer.appendChild(createNewBookEl(newBook, myLibrary.length)); // UID TODO
+    bookContainer.appendChild(createNewBookEl(newBook));
 }
 
 function clearFrom() {
@@ -63,14 +63,13 @@ function submitNewBookHandler(e) {
     clearFrom();
 }
 
-function createNewBookEl(book, uid) {
+function createNewBookEl(book) {
     const newBook = document.createElement('div');
     newBook.classList.add('book');
     newBook.setAttribute('data-title', book.title);
     newBook.setAttribute('data-author', book.author);
     newBook.setAttribute('data-page-count', book.pageCount);
     newBook.setAttribute('data-read-status', book.status);
-    newBook.setAttribute('data-uid', uid);
 
     const newBookContents = document.createElement('div');
     newBookContents.classList.add('book-contents');
@@ -84,9 +83,6 @@ function createNewBookEl(book, uid) {
     const newBookPageCount = document.createElement('div');
     newBookPageCount.classList.add('book-page-count');
 
-    // const newBookStatus = document.createElement('div');
-    // newBookStatus.classList.add('book-read-status');
-
     const newBookStatusTgl = document.createElement('input');
     newBookStatusTgl.setAttribute('type', 'checkbox');
     newBookStatusTgl.checked = book.status;
@@ -96,7 +92,6 @@ function createNewBookEl(book, uid) {
     newBookContents.appendChild(newBookTitle);
     newBookContents.appendChild(newBookAuthor);
     newBookContents.appendChild(newBookPageCount);
-    //newBookContents.appendChild(newBookStatus);
     newBookContents.appendChild(newBookStatusTgl);
 
     const newBookControls = document.createElement('div');
@@ -112,7 +107,6 @@ function createNewBookEl(book, uid) {
     newBookTitle.textContent = book.title;
     newBookAuthor.textContent = book.author;
     newBookPageCount.textContent = book.pageCount;
-    // newBookStatus.textContent = book.status;
 
     newBook.appendChild(newBookContents);
     newBook.appendChild(newBookControls);
