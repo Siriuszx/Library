@@ -21,7 +21,7 @@ class Book {
 
     toggleStatus() {
         this.status = !this.status;
-    };
+    }
 }
 
 function selectBookNode(child) {
@@ -40,7 +40,7 @@ function removeBook() {
 
 function toggleRead() {
     let curBook = selectBookNode(this);
-    
+
     myLibrary[curBook.bookElIndex].toggleStatus();
 }
 
@@ -127,4 +127,3 @@ addBook('Atmic Hafifts', 'James Clear', 320, true);
 addBook('Atmfc Hbits', 'James Clear', 320, true);
 addBook('Atsic abitfs', 'James Clear', 320, true);
 addBook('Atqwemic Habits', 'James Clear', 320, true);
-
